@@ -7,7 +7,7 @@ This project is currently available under the [MIT](https://github.com/TenMei/pr
 ## Installation
 You can get the sources:
 ```
-git clone https://github.com/TenMei/product-order-services.git
+git clone https://github.com/congcoi123/product-order-services.git
 ```
 
 ## Manual
