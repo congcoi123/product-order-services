@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wishop</groupId>
-	<artifactId>product</artifactId>
+	<artifactId>configuration</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>product</name>
-	<description>Product service</description>
+	<name>configuration</name>
+	<description>Configuration service</description>
 
 	<properties>
 		<java.version>1.8</java.version>
