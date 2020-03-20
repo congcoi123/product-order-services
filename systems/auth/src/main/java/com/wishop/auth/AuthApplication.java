@@ -57,7 +57,7 @@ public class AuthApplication {
 	@Bean
 	CommandLineRunner initDatabase(CredentialRepository credentialRepository) {
 		return args -> {
-			Credential cre = new Credential("cong", "12345");
+			Credential cre = new Credential("kong", "12345");
 			credentialRepository.save(cre);
 		};
 	}

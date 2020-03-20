@@ -49,34 +49,28 @@ public class GatewayApplication {
 		SpringApplication.run(GatewayApplication.class);
 	}
 
-	@Value("${api.path.versions}")
-	private String versions;
-
 	@Value("${api.path.configurations}")
 	private String paths;
 
 	@Bean
 	public RouteLocator routeLocator(RouteLocatorBuilder builder) {
 		String arrPaths[] = paths.split(";");
-		String arrVersions[] = versions.split(",");
 
 		RouteLocatorBuilder.Builder routes = builder.routes();
 
-		for (final String v : arrVersions) {
-			for (final String parr : arrPaths) {
-				final String par[] = parr.split(",");
-				// service name
-				final String s = par[0];
-				// service path
-				final String p = par[1];
+		for (final String parr : arrPaths) {
+			final String par[] = parr.split(",");
+			// service name
+			final String s = par[0];
+			// service path
+			final String p = par[1];
 
-				final String patterns = String.format("/%s/%s/**", v, p);
-				final String regex = String.format("/%s/%s/(?<path>.*)", v, p);
-				final String uri = String.format("lb://%s", s);
+			final String patterns = String.format("/%s/**", p);
+			final String regex = String.format("/%s/(?<path>.*)", p);
+			final String uri = String.format("lb://%s", s);
 
-				routes = routes
-						.route(r -> r.path(patterns).filters(f -> f.rewritePath(regex, "/$\\{path}")).uri(uri).id(s));
-			}
+			routes = routes
+					.route(r -> r.path(patterns).filters(f -> f.rewritePath(regex, "/$\\{path}")).uri(uri).id(s));
 		}
 
 		return routes.build();

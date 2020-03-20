@@ -84,7 +84,7 @@ public class AuthRoleApplication {
 			role2.addPermission(new Permission("PERM_DELETE_NEWS11"));
 			roleRepository.save(role2);
 
-			Credential cre = new Credential("cong", "12345");
+			Credential cre = new Credential("kong", "12345");
             // cre.addRole(role);
             // cre.addRole(role2);
 			credentialRepository.save(cre);

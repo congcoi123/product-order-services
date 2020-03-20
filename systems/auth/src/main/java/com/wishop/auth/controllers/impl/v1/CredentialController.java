@@ -21,24 +21,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.controllers.impl;
+package com.wishop.auth.controllers.impl.v1;
 
-import org.springframework.http.HttpStatus;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.wishop.authrole.controllers.CommonInterface;
-import com.wishop.common.entities.response.BaseReponse;
-import com.wishop.common.entities.response.BaseReponse.ResponseState;
+import com.wishop.auth.controllers.CredentialInterface;
+import com.wishop.auth.entities.Credential;
+import com.wishop.auth.services.CredentialService;
+import com.wishop.common.entities.response.ListResultsResponse;
 
+@RequestMapping("v1/" + "${api.path.root}")
 @RestController
-public class CommonController implements CommonInterface {
+public class CredentialController implements CredentialInterface {
+
+	@Autowired
+	private CredentialService credentialService;
 
 	@HystrixCommand
 	@Override
-	public ResponseEntity<Object> ping() {
-		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();
+	public ResponseEntity<Object> getCredential(String userName) {
+		List<Credential> credentials = new ArrayList<Credential>();
+		credentials.add(credentialService.getCredential(userName));
+		return new ListResultsResponse().setListResults("users", credentials).get();
 	}
 
 }
