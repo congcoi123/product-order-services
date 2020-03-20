@@ -51,6 +51,9 @@ import lombok.Setter;
 @Table(name = "credential")
 public class Credential {
 
+	// must have setter and getter here for response
+	@Getter
+	@Setter
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

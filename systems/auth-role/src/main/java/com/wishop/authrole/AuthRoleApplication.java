@@ -62,21 +62,20 @@ public class AuthRoleApplication {
 	CommandLineRunner initDatabase(PermissionRepository permissionRepository, RoleRepository roleRepository,
 			CredentialRepository credentialRepository) {
 		return args -> {
-			Permission per = new Permission("PERM_READ_NEWS"); // 1
+			Permission per = new Permission("PERM_READ_NEWS");
 			per.setDeleted(true);
 			permissionRepository.save(per);
-			permissionRepository.save(new Permission("PERM_WRITE_NEWS")); // 2
-			permissionRepository.save(new Permission("PERM_DELETE_NEWS1")); // 3
-			permissionRepository.save(new Permission("PERM_DELETE_NEWS2")); // 4
-			permissionRepository.save(new Permission("PERM_DELETE_NEWS3")); // 5
-			permissionRepository.save(new Permission("PERM_DELETE_NEWS4")); // 6
-			permissionRepository.save(new Permission("PERM_DELETE_NEWS5")); // 7
-			permissionRepository.save(new Permission("PERM_DELETE_NEWS6")); // 8
-
+			
 			Role role = new Role("Admin");
-			role.addPermission(new Permission("PERM_DELETE_NEWS7"));
-			role.addPermission(new Permission("PERM_DELETE_NEWS8"));
-			roleRepository.save(role);
+			role.addPermission(new Permission("PERM_READ_CREDENTIAL"));
+			role.addPermission(new Permission("PERM_WRITE_CREDENTIAL"));
+			role.addPermission(new Permission("PERM_DELETE_CREDENTIAL"));
+			role.addPermission(new Permission("PERM_READ_PERMISSION"));
+			role.addPermission(new Permission("PERM_WRITE_PERMISSION"));
+			role.addPermission(new Permission("PERM_DELETE_PERMISSION"));
+			role.addPermission(new Permission("PERM_READ_ROLE"));
+			role.addPermission(new Permission("PERM_WRITE_ROLE"));
+			role.addPermission(new Permission("PERM_DELETE_ROLE"));
 
 			Role role2 = new Role("Moder");
 			role2.addPermission(new Permission("PERM_DELETE_NEWS9"));
@@ -84,10 +83,12 @@ public class AuthRoleApplication {
 			role2.addPermission(new Permission("PERM_DELETE_NEWS11"));
 			roleRepository.save(role2);
 
-			Credential cre = new Credential("kong", "12345");
-            // cre.addRole(role);
-            // cre.addRole(role2);
+			Credential cre = new Credential("kong", "12345"); // 11
 			credentialRepository.save(cre);
+			
+			Credential myCre = credentialRepository.getByUserName("kong").get(0);
+			myCre.addRole(role);
+			credentialRepository.save(myCre);
 
 		};
 	}

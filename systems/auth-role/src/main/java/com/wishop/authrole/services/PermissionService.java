@@ -75,7 +75,7 @@ public class PermissionService {
 	}
 
 	public Permission savePermission(Permission permission) {
-		if (isExistPermisison(permission.getName()))
+		if (!isExistPermisison(permission.getName()))
 			return permissionRepository.save(permission);
 		else
 			throw new EntityDuplicatedException("Permission", permission.getName());

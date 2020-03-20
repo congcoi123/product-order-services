@@ -21,23 +21,29 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.controllers;
+package com.wishop.authrole.security;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.wishop.common.entities.response.BaseReponse;
-import com.wishop.common.entities.response.BaseReponse.ResponseState;
+import com.wishop.authrole.entities.Credential;
+import com.wishop.authrole.entities.Permission;
+import com.wishop.authrole.entities.Role;
 
-@RestController
-public class CommonController implements CommonInterface {
+/**
+ * This class is setting for response all properties of an entity (include @id)
+ * 
+ * @author kong
+ *
+ */
+@Configuration
+public class RepositoryConfiguration implements RepositoryRestConfigurer {
 
-	@HystrixCommand
 	@Override
-	public ResponseEntity<Object> ping() {
-		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();
+	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+		config.exposeIdsFor(Permission.class);
+		config.exposeIdsFor(Role.class);
+		config.exposeIdsFor(Credential.class);
 	}
-
 }

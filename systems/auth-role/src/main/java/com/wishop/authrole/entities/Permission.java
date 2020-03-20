@@ -45,6 +45,9 @@ import lombok.Setter;
 @Table(name = "permission")
 public class Permission {
 
+	// must have setter and getter here for response
+	@Getter
+	@Setter
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
