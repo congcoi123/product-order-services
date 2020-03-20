@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wishop.authrole.controllers.RoleInterface;
 import com.wishop.authrole.entities.Role;
 import com.wishop.authrole.entities.request.AssignPermRequest;
@@ -44,11 +45,13 @@ public class RoleController implements RoleInterface {
 	@Autowired
 	private RoleService roleService;
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getAllRoles() {
 		return new ListResultsResponse().setListResults("roles", roleService.getAllRoles()).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getAllPermissions(int page, int limit) {
 		List<Role> roles = roleService.getAllRoles(page, limit);
@@ -56,6 +59,7 @@ public class RoleController implements RoleInterface {
 				.get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getRole(Long id) {
 		List<Role> roles = new ArrayList<Role>();
@@ -63,12 +67,14 @@ public class RoleController implements RoleInterface {
 		return new ListResultsResponse().setListResults("roles", roles).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> deleteRole(Long id) {
 		roleService.deleteRole(id);
 		return new BaseReponse().get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> saveRole(Role role) {
 		List<Role> roles = new ArrayList<Role>();
@@ -76,6 +82,7 @@ public class RoleController implements RoleInterface {
 		return new ListResultsResponse().setListResults("roles", roles).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> assignPermissions(AssignPermRequest assignRequest) {
 		List<Role> roles = new ArrayList<Role>();

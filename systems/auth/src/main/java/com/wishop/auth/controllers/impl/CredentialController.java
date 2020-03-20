@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wishop.auth.controllers.CredentialInterface;
 import com.wishop.auth.entities.Credential;
 import com.wishop.auth.services.CredentialService;
@@ -41,6 +42,7 @@ public class CredentialController implements CredentialInterface {
 	@Autowired
 	private CredentialService credentialService;
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getCredential(String userName) {
 		List<Credential> credentials = new ArrayList<Credential>();

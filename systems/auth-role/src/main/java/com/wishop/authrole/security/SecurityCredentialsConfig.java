@@ -71,12 +71,13 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 				.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(credentialService, authenticationManager(),
 						jwtConfig))
 
+				.authorizeRequests()
 				// Allow ping request (the order is important)
-				.authorizeRequests().antMatchers("/ping**").permitAll()
-
-				.and()
+				.antMatchers("/ping**").permitAll()
+				// Allow actuator (monitoring, circuit breaker) request (the order is important), it should be authenticated.
+				.antMatchers("/actuator/**").permitAll()
 				// Allow POST requests for the authentication
-				.authorizeRequests().antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
+				.antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
 
 				// Default response if the client wants to get a resource unauthorized
 				.and().exceptionHandling()

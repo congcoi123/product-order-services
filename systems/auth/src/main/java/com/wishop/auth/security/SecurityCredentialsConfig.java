@@ -72,7 +72,7 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 				// Allow ping request (the order is important)
 				.authorizeRequests()
 				.antMatchers("/ping**").permitAll()
-				// Allow actuator (monitoring, c.b) request (the order is important)
+				// Allow actuator (monitoring, circuit breaker) request (the order is important), it should be authenticated.
 				.antMatchers("/actuator/**").permitAll()
 				// Allow POST requests for the authentication
 				.antMatchers(HttpMethod.POST, tokenConfig().getUri()).permitAll()

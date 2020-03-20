@@ -35,7 +35,7 @@ import com.wishop.common.entities.response.BaseReponse.ResponseState;
 @RestController
 public class CommonController implements CommonInterface {
 
-	@HystrixCommand()
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> ping() {
 		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();

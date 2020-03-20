@@ -27,6 +27,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wishop.authrole.controllers.CommonInterface;
 import com.wishop.common.entities.response.BaseReponse;
 import com.wishop.common.entities.response.BaseReponse.ResponseState;
@@ -34,6 +35,7 @@ import com.wishop.common.entities.response.BaseReponse.ResponseState;
 @RestController
 public class CommonController implements CommonInterface {
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> ping() {
 		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();

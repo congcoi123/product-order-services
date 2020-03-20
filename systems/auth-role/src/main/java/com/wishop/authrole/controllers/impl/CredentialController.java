@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wishop.authrole.controllers.CredentialInterface;
 import com.wishop.authrole.entities.Credential;
 import com.wishop.authrole.entities.request.AssignRoleRequest;
@@ -44,11 +45,13 @@ public class CredentialController implements CredentialInterface {
 	@Autowired
 	private CredentialService credentialService;
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getAllCredentials() {
 		return new ListResultsResponse().setListResults("users", credentialService.getAllCredentials()).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getAllCredentials(int page, int limit) {
 		List<Credential> credentials = credentialService.getAllCredentials(page, limit);
@@ -56,17 +59,20 @@ public class CredentialController implements CredentialInterface {
 				.setListResults("users", credentials).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getAllRoles(String userName) {
 		return new ListResultsResponse().setListResults("roles", credentialService.getAllRoles(userName)).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getAllPermissions(String userName) {
 		return new ListResultsResponse().setListResults("permissions", credentialService.getAllPermissions(userName))
 				.get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getCredential(String userName) {
 		List<Credential> credentials = new ArrayList<Credential>();
@@ -74,12 +80,14 @@ public class CredentialController implements CredentialInterface {
 		return new ListResultsResponse().setListResults("users", credentials).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> deleteCredential(String userName) {
 		credentialService.deleteCredential(userName);
 		return new BaseReponse().get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> saveCredential(Credential credential) {
 		List<Credential> credentials = new ArrayList<Credential>();
@@ -87,6 +95,7 @@ public class CredentialController implements CredentialInterface {
 		return new ListResultsResponse().setListResults("users", credentials).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> assignRole(AssignRoleRequest assignRequest) {
 		List<Credential> credentials = new ArrayList<Credential>();

@@ -25,9 +25,16 @@ package com.wishop.authrole;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.wishop.authrole.entities.Credential;
 import com.wishop.authrole.entities.Permission;
@@ -37,6 +44,13 @@ import com.wishop.authrole.repository.PermissionRepository;
 import com.wishop.authrole.repository.RoleRepository;
 
 @SpringBootApplication
+@Configuration
+@EnableWebMvc
+@ComponentScan
+@EnableAutoConfiguration
+@EnableConfigurationProperties
+@EnableEurekaClient
+@EnableCircuitBreaker
 public class AuthRoleApplication {
 
 	public static void main(String[] args) {

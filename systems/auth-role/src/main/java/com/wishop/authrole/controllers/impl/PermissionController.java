@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wishop.authrole.controllers.PermissionInterface;
 import com.wishop.authrole.entities.Permission;
 import com.wishop.authrole.services.PermissionService;
@@ -43,11 +44,13 @@ public class PermissionController implements PermissionInterface {
 	@Autowired
 	private PermissionService permissionService;
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getAllPermissions() {
 		return new ListResultsResponse().setListResults("permissions", permissionService.getAllPermissions()).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getAllPermissions(int page, int limit) {
 		List<Permission> permissions = permissionService.getAllPermissions(page, limit);
@@ -55,6 +58,7 @@ public class PermissionController implements PermissionInterface {
 				.setListResults("permissions", permissions).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> getPermission(Long id) {
 		List<Permission> permissions = new ArrayList<Permission>();
@@ -62,12 +66,14 @@ public class PermissionController implements PermissionInterface {
 		return new ListResultsResponse().setListResults("permissions", permissions).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> deletePermission(Long id) {
 		permissionService.deletePermission(id);
 		return new BaseReponse().get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> savePermission(Permission permission) {
 		List<Permission> permissions = new ArrayList<Permission>();
@@ -75,6 +81,7 @@ public class PermissionController implements PermissionInterface {
 		return new ListResultsResponse().setListResults("permissions", permissions).get();
 	}
 
+	@HystrixCommand
 	@Override
 	public ResponseEntity<Object> updatePermission(Permission permission, Long id) {
 		return null;
