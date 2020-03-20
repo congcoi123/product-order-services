@@ -44,7 +44,7 @@ public class SecurityTest {
 
 	private static final String X_AUTH_USERNAME = "X-Auth-Username";
 	private static final String X_AUTH_PASSWORD = "X-Auth-Password";
-	private static final String X_AUTH_TOKEN = "X-Auth-Token";
+//	private static final String X_AUTH_TOKEN = "X-Auth-Token";
 
 	@Value("${local.server.port}")
 	int port;
