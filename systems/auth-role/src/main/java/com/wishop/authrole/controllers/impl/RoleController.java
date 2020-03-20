@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,17 +44,11 @@ public class RoleController implements RoleInterface {
 	@Autowired
 	private RoleService roleService;
 
-	/*
-	 * @see ten.readany.auth.controllers.RoleInterface#getAllRoles()
-	 */
 	@Override
 	public ResponseEntity<Object> getAllRoles() {
 		return new ListResultsResponse().setListResults("roles", roleService.getAllRoles()).get();
 	}
 
-	/*
-	 * @see ten.readany.auth.controllers.RoleInterface#getAllPermissions(int, int)
-	 */
 	@Override
 	public ResponseEntity<Object> getAllPermissions(int page, int limit) {
 		List<Role> roles = roleService.getAllRoles(page, limit);
@@ -62,9 +56,6 @@ public class RoleController implements RoleInterface {
 				.get();
 	}
 
-	/*
-	 * @see ten.readany.auth.controllers.RoleInterface#getRole(java.lang.Long)
-	 */
 	@Override
 	public ResponseEntity<Object> getRole(Long id) {
 		List<Role> roles = new ArrayList<Role>();
@@ -72,20 +63,12 @@ public class RoleController implements RoleInterface {
 		return new ListResultsResponse().setListResults("roles", roles).get();
 	}
 
-	/*
-	 * @see ten.readany.auth.controllers.RoleInterface#deleteRole(java.lang.Long)
-	 */
 	@Override
 	public ResponseEntity<Object> deleteRole(Long id) {
 		roleService.deleteRole(id);
 		return new BaseReponse().get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.RoleInterface#saveRole(ten.readany.auth.entities
-	 * .Role)
-	 */
 	@Override
 	public ResponseEntity<Object> saveRole(Role role) {
 		List<Role> roles = new ArrayList<Role>();
@@ -93,11 +76,6 @@ public class RoleController implements RoleInterface {
 		return new ListResultsResponse().setListResults("roles", roles).get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.RoleInterface#assignPermissions(ten.readany.auth
-	 * .entities.request.AssignPermRequest)
-	 */
 	@Override
 	public ResponseEntity<Object> assignPermissions(AssignPermRequest assignRequest) {
 		List<Role> roles = new ArrayList<Role>();

@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -43,18 +43,11 @@ public class PermissionController implements PermissionInterface {
 	@Autowired
 	private PermissionService permissionService;
 
-	/*
-	 * @see ten.readany.auth.controllers.PermissionInterface#getAllPermissions()
-	 */
 	@Override
 	public ResponseEntity<Object> getAllPermissions() {
 		return new ListResultsResponse().setListResults("permissions", permissionService.getAllPermissions()).get();
 	}
 
-	/*
-	 * @see ten.readany.auth.controllers.PermissionInterface#getAllPermissions(int,
-	 * int)
-	 */
 	@Override
 	public ResponseEntity<Object> getAllPermissions(int page, int limit) {
 		List<Permission> permissions = permissionService.getAllPermissions(page, limit);
@@ -62,11 +55,6 @@ public class PermissionController implements PermissionInterface {
 				.setListResults("permissions", permissions).get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.PermissionInterface#getPermission(java.lang.
-	 * Long)
-	 */
 	@Override
 	public ResponseEntity<Object> getPermission(Long id) {
 		List<Permission> permissions = new ArrayList<Permission>();
@@ -74,22 +62,12 @@ public class PermissionController implements PermissionInterface {
 		return new ListResultsResponse().setListResults("permissions", permissions).get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.PermissionInterface#deletePermission(java.lang.
-	 * Long)
-	 */
 	@Override
 	public ResponseEntity<Object> deletePermission(Long id) {
 		permissionService.deletePermission(id);
 		return new BaseReponse().get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.PermissionInterface#savePermission(ten.readany.
-	 * auth.entities.Permission)
-	 */
 	@Override
 	public ResponseEntity<Object> savePermission(Permission permission) {
 		List<Permission> permissions = new ArrayList<Permission>();
@@ -97,11 +75,6 @@ public class PermissionController implements PermissionInterface {
 		return new ListResultsResponse().setListResults("permissions", permissions).get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.PermissionInterface#updatePermission(ten.readany
-	 * .auth.entities.Permission, java.lang.Long)
-	 */
 	@Override
 	public ResponseEntity<Object> updatePermission(Permission permission, Long id) {
 		return null;

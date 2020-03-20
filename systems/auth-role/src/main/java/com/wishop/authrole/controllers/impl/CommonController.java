@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,17 +21,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.controllers.api;
+package com.wishop.authrole.controllers.impl;
 
-public interface Version1 {
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
-	String PATH = "/v1";
+import com.wishop.authrole.controllers.CommonInterface;
+import com.wishop.common.entities.response.BaseReponse;
+import com.wishop.common.entities.response.BaseReponse.ResponseState;
 
-	String GETS_BY_PAGE_AND_LIMIT = PATH + "/page/{page}/limit/{limit}";
-	String GETS_ROLE_BY_USERNAME = PATH + "/roles/{username}";
-	String GETS_PERMISSION_BY_USERNAME = PATH + "/permissions/{username}";
-	String BY_USERNAME = PATH + "/{username}";
-	String BY_ID = PATH + "/{id}";
-	String ASSIGN = PATH + "/assign";
+@RestController
+public class CommonController implements CommonInterface {
+
+	@Override
+	public ResponseEntity<Object> ping() {
+		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();
+	}
 
 }

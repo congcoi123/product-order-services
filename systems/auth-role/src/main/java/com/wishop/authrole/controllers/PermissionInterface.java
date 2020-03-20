@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -39,37 +42,38 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wishop.authrole.controllers.api.Api;
-import com.wishop.authrole.controllers.api.Version1;
 import com.wishop.authrole.entities.Permission;
 
-@RequestMapping(Api.PERMISSIONS)
+@RefreshScope
+@Configuration
+@ComponentScan
+@RequestMapping("${api.path.root}")
 @Validated
 @PreAuthorize("denyAll")
 public interface PermissionInterface {
 
-	@GetMapping({ Version1.PATH })
+	@GetMapping({ "${api.path.permissions.getAll}" })
 	@PreAuthorize("hasRole('PERM_READ_PERMISSION')")
 	ResponseEntity<Object> getAllPermissions();
 
-	@GetMapping({ Version1.GETS_BY_PAGE_AND_LIMIT })
+	@GetMapping({ "${api.path.permissions.getByPage}" })
 	@PreAuthorize("hasRole('PERM_READ_PERMISSION')")
 	ResponseEntity<Object> getAllPermissions(@PathVariable("page") @NotNull @Min(1) int page,
 			@PathVariable("limit") @NotNull @Min(1) @Max(250) int limit);
 
-	@GetMapping({ Version1.BY_ID })
+	@GetMapping({ "${api.path.permissions.getById}" })
 	@PreAuthorize("hasRole('PERM_READ_PERMISSION')")
 	ResponseEntity<Object> getPermission(@PathVariable("id") Long id);
 
-	@DeleteMapping({ Version1.BY_ID })
+	@DeleteMapping({ "${api.path.permissions.deleteById}" })
 	@PreAuthorize("hasRole('PERM_DELETE_PERMISSION')")
 	ResponseEntity<Object> deletePermission(@PathVariable("id") Long id);
 
-	@PostMapping({ Version1.BY_ID })
+	@PostMapping({ "{$api.path.permissions.createById}" })
 	@PreAuthorize("hasRole('PERM_WRITE_PERMISSION')")
 	ResponseEntity<Object> savePermission(@Valid @RequestBody Permission permission);
 
-	@PutMapping({ Version1.PATH })
+	@PutMapping({ "${api.path.permissions.updateById}" })
 	@PreAuthorize("hasRole('PERM_WRITE_PERMISSION')")
 	@Deprecated
 	ResponseEntity<Object> updatePermission(@RequestBody Permission permission, @PathVariable("id") Long id);

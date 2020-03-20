@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -38,46 +41,47 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wishop.authrole.controllers.api.Api;
-import com.wishop.authrole.controllers.api.Version1;
 import com.wishop.authrole.entities.Credential;
 import com.wishop.authrole.entities.request.AssignRoleRequest;
 
-@RequestMapping(Api.CREDENTIALS)
+@RefreshScope
+@Configuration
+@ComponentScan
+@RequestMapping("${api.path.root}")
 @Validated
 @PreAuthorize("denyAll")
 public interface CredentialInterface {
 
-	@GetMapping({ Version1.PATH })
+	@GetMapping({ "${api.path.credentials.getAll}" })
 	@PreAuthorize("hasRole('PERM_READ_CREDENTIAL')")
 	ResponseEntity<Object> getAllCredentials();
 
-	@GetMapping({ Version1.GETS_BY_PAGE_AND_LIMIT })
+	@GetMapping({ "${api.path.credentials.getByPage}" })
 	@PreAuthorize("hasRole('PERM_READ_CREDENTIAL')")
 	ResponseEntity<Object> getAllCredentials(@PathVariable("page") @NotNull @Min(1) int page,
 			@PathVariable("limit") @NotNull @Min(1) @Max(250) int limit);
 
-	@GetMapping({ Version1.GETS_ROLE_BY_USERNAME })
+	@GetMapping({ "${api.path.credentials.getRolesByUsername}" })
 	@PreAuthorize("hasRole('PERM_READ_CREDENTIAL')")
 	ResponseEntity<Object> getAllRoles(@PathVariable("username") String userName);
 
-	@GetMapping({ Version1.GETS_PERMISSION_BY_USERNAME })
+	@GetMapping({ "${api.path.credentials.getPermissionsByUsername}" })
 	@PreAuthorize("hasRole('PERM_READ_CREDENTIAL')")
 	ResponseEntity<Object> getAllPermissions(@PathVariable("username") String userName);
 
-	@GetMapping({ Version1.BY_USERNAME })
+	@GetMapping({ "${api.path.credentials.getByUsername}" })
 	@PreAuthorize("hasRole('PERM_READ_CREDENTIAL')")
 	ResponseEntity<Object> getCredential(@PathVariable("username") String userName);
 
-	@DeleteMapping({ Version1.BY_USERNAME })
+	@DeleteMapping({ "${api.path.credentials.deleteByUsername}" })
 	@PreAuthorize("hasRole('PERM_DELETE_CREDENTIAL')")
 	ResponseEntity<Object> deleteCredential(@PathVariable("username") String userName);
 
-	@PostMapping({ Version1.PATH })
+	@PostMapping({ "${api.path.credentials.createUsername}" })
 	@PreAuthorize("hasRole('PERM_WRITE_CREDENTIAL')")
 	ResponseEntity<Object> saveCredential(@RequestBody Credential credential);
 
-	@PostMapping({ Version1.ASSIGN })
+	@PostMapping({ "${api.path.credentials.assign}" })
 	@PreAuthorize("hasRole('PERM_WRITE_CREDENTIAL')")
 	ResponseEntity<Object> assignRole(@Valid @RequestBody AssignRoleRequest assignRequest);
 

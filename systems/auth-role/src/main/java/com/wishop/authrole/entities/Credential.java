@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -43,6 +43,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "credential")
 public class Credential {
@@ -52,10 +56,14 @@ public class Credential {
 	@Column(name = "id")
 	private Long id;
 
+	@Getter
+	@Setter(AccessLevel.PRIVATE)
 	@Column(name = "user_name")
 	private String userName;
 
+	@Getter
 	@Column(name = "password")
+	@Setter(AccessLevel.PRIVATE)
 	private String password;
 
 	@Column(name = "created_date")
@@ -68,63 +76,37 @@ public class Credential {
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
 	private Date updatedDate;
 
+	@Getter
+	@Setter
 	@Column(name = "deleted")
 	private boolean deleted;
 
+	@Getter
+	@Setter
 	@Column(name = "enabled")
 	private boolean enabled;
 
+	@Getter
+	@Setter
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // for lazy load
 	@JoinTable(name = "credential_role", joinColumns = @JoinColumn(name = "credential_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Set<Role> roles = new HashSet<Role>();
 
 	private Credential() {
-		deleted = false;
-		enabled = true;
+		setDeleted(false);
+		setEnabled(true);
 		createdDate = new Date();
 		updatedDate = new Date();
 	}
 
 	public Credential(String userName, String password) {
 		this();
-		this.userName = userName;
-		this.password = password;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
+		setUserName(userName);
+		setPassword(password);
 	}
 
 	public boolean addRole(Role role) {
 		return roles.add(role);
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void deleted() {
-		this.deleted = true;
-	}
-
-	public boolean isDeleted() {
-		return deleted;
 	}
 
 }

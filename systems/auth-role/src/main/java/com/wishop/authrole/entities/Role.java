@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,6 +44,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "role")
 public class Role {
@@ -53,6 +57,8 @@ public class Role {
 	@Column(name = "id")
 	private Long id;
 
+	@Getter
+	@Setter(AccessLevel.PRIVATE)
 	@Column(name = "name")
 	@NotEmpty(message = "Please provide a role's name")
 	private String name;
@@ -70,6 +76,8 @@ public class Role {
 	@Column(name = "deleted")
 	private boolean deleted;
 
+	@Getter
+	@Setter
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // for lazy load
 	@JoinTable(name = "role_permission", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id"))
 	private Set<Permission> permissions = new HashSet<Permission>();
@@ -82,23 +90,11 @@ public class Role {
 
 	public Role(String name) {
 		this();
-		this.name = name;
-	}
-
-	public Set<Permission> getPermissions() {
-		return permissions;
+		setName(name);
 	}
 
 	public boolean addPermission(Permission permission) {
 		return permissions.add(permission);
-	}
-
-	public void setPermissions(Set<Permission> permissions) {
-		this.permissions = permissions;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 }

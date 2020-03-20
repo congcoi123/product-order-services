@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,6 +37,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "permission")
 public class Permission {
@@ -46,6 +50,8 @@ public class Permission {
 	@Column(name = "id")
 	private Long id;
 
+	@Getter
+	@Setter(AccessLevel.PRIVATE)
 	@Column(name = "name")
 	@NotEmpty(message = "Please provide a permission's name")
 	private String name;
@@ -60,30 +66,20 @@ public class Permission {
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
 	private Date updatedDate;
 
+	@Getter
+	@Setter
 	@Column(name = "deleted")
 	private boolean deleted;
 
 	private Permission() {
 		createdDate = new Date();
 		updatedDate = new Date();
-		deleted = false;
+		setDeleted(false);
 	}
 
 	public Permission(String name) {
 		this();
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void deleted() {
-		this.deleted = true;
-	}
-
-	public boolean isDeleted() {
-		return deleted;
+		setName(name);
 	}
 
 }

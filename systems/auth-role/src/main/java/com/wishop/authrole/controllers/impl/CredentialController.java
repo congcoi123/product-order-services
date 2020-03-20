@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,18 +44,11 @@ public class CredentialController implements CredentialInterface {
 	@Autowired
 	private CredentialService credentialService;
 
-	/*
-	 * @see ten.readany.auth.controllers.CredentialInterface#getAllCredentials()
-	 */
 	@Override
 	public ResponseEntity<Object> getAllCredentials() {
 		return new ListResultsResponse().setListResults("users", credentialService.getAllCredentials()).get();
 	}
 
-	/*
-	 * @see ten.readany.auth.controllers.CredentialInterface#getAllCredentials(int,
-	 * int)
-	 */
 	@Override
 	public ResponseEntity<Object> getAllCredentials(int page, int limit) {
 		List<Credential> credentials = credentialService.getAllCredentials(page, limit);
@@ -63,31 +56,17 @@ public class CredentialController implements CredentialInterface {
 				.setListResults("users", credentials).get();
 	}
 
-	/*
-	 * @see ten.readany.auth.controllers.CredentialInterface#getAllRoles(java.lang.
-	 * String)
-	 */
 	@Override
 	public ResponseEntity<Object> getAllRoles(String userName) {
 		return new ListResultsResponse().setListResults("roles", credentialService.getAllRoles(userName)).get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.CredentialInterface#getAllPermissions(java.lang.
-	 * String)
-	 */
 	@Override
 	public ResponseEntity<Object> getAllPermissions(String userName) {
 		return new ListResultsResponse().setListResults("permissions", credentialService.getAllPermissions(userName))
 				.get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.CredentialInterface#getCredential(java.lang.
-	 * String)
-	 */
 	@Override
 	public ResponseEntity<Object> getCredential(String userName) {
 		List<Credential> credentials = new ArrayList<Credential>();
@@ -95,22 +74,12 @@ public class CredentialController implements CredentialInterface {
 		return new ListResultsResponse().setListResults("users", credentials).get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.CredentialInterface#deleteCredential(java.lang.
-	 * String)
-	 */
 	@Override
 	public ResponseEntity<Object> deleteCredential(String userName) {
 		credentialService.deleteCredential(userName);
 		return new BaseReponse().get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.CredentialInterface#saveCredential(ten.readany.
-	 * auth.entities.Credential)
-	 */
 	@Override
 	public ResponseEntity<Object> saveCredential(Credential credential) {
 		List<Credential> credentials = new ArrayList<Credential>();
@@ -118,11 +87,6 @@ public class CredentialController implements CredentialInterface {
 		return new ListResultsResponse().setListResults("users", credentials).get();
 	}
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.CredentialInterface#assignRole(java.lang.String,
-	 * int)
-	 */
 	@Override
 	public ResponseEntity<Object> assignRole(AssignRoleRequest assignRequest) {
 		List<Credential> credentials = new ArrayList<Credential>();

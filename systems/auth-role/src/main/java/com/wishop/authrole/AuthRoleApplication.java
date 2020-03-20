@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -43,13 +43,13 @@ public class AuthRoleApplication {
 		SpringApplication.run(AuthRoleApplication.class, args);
 	}
 
-	@Profile("dev")
+	@Profile("development")
 	@Bean
 	CommandLineRunner initDatabase(PermissionRepository permissionRepository, RoleRepository roleRepository,
 			CredentialRepository credentialRepository) {
 		return args -> {
 			Permission per = new Permission("PERM_READ_NEWS"); // 1
-			per.deleted();
+			per.setDeleted(true);
 			permissionRepository.save(per);
 			permissionRepository.save(new Permission("PERM_WRITE_NEWS")); // 2
 			permissionRepository.save(new Permission("PERM_DELETE_NEWS1")); // 3
@@ -71,8 +71,8 @@ public class AuthRoleApplication {
 			roleRepository.save(role2);
 
 			Credential cre = new Credential("cong", "12345");
-//            cre.addRole(role);
-//            cre.addRole(role2);
+            // cre.addRole(role);
+            // cre.addRole(role2);
 			credentialRepository.save(cre);
 
 		};

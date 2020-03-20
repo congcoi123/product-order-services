@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -71,10 +71,14 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 				.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(credentialService, authenticationManager(),
 						jwtConfig))
 
-				// allow POST requests for the authentication
+				// Allow ping request (the order is important)
+				.authorizeRequests().antMatchers("/ping**").permitAll()
+
+				.and()
+				// Allow POST requests for the authentication
 				.authorizeRequests().antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
 
-				// default response if the client wants to get a resource unauthorized
+				// Default response if the client wants to get a resource unauthorized
 				.and().exceptionHandling()
 				.authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 	}
