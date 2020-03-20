@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,12 +26,14 @@ package com.wishop.auth.configurations;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+@RefreshScope
 @Configuration
 @ComponentScan
 public class DatabaseConfig {
@@ -48,7 +50,7 @@ public class DatabaseConfig {
 	@Value("${jdbc.password}")
 	private String password;
 
-	@Profile("dev")
+	@Profile("development")
 	@Bean
 	public DataSource devDatabaseConnection() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -59,7 +61,7 @@ public class DatabaseConfig {
 		return dataSource;
 	}
 
-	@Profile("test")
+	@Profile("testing")
 	@Bean
 	public String testDatabaseConnection() {
 		System.out.println("DB Connection to RDS_TEST - Low Cost Instance");
@@ -68,7 +70,7 @@ public class DatabaseConfig {
 		return "DB Connection to RDS_TEST - Low Cost Instance";
 	}
 
-	@Profile("prod")
+	@Profile("production")
 	@Bean
 	public String prodDatabaseConnection() {
 		System.out.println("DB Connection to RDS_PROD - High Performance Instance");

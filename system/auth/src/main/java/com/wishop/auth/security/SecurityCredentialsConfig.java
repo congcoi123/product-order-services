@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,8 @@ import com.wishop.auth.configurations.TokenConfig;
 import com.wishop.auth.services.CredentialService;
 import com.wishop.auth.services.TokenService;
 
-@EnableWebSecurity // Enable security config. This annotation denotes config for spring security.
+@EnableWebSecurity // Enable security configuration. This annotation denotes configuration for
+					// spring security.
 public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -56,7 +57,7 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 				// Don't need CSRF for this time
 				.csrf().disable()
 
-				// Make sure we use stateless session; Session won't be used to store user's
+				// Make sure we use state-less session; Session won't be used to store user's
 				// state.
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 

@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,11 +41,6 @@ public class CredentialController implements CredentialInterface {
 	@Autowired
 	private CredentialService credentialService;
 
-	/*
-	 * @see
-	 * ten.readany.auth.controllers.CredentialInterface#getCredential(java.lang.
-	 * String)
-	 */
 	@Override
 	public ResponseEntity<Object> getCredential(String userName) {
 		List<Credential> credentials = new ArrayList<Credential>();

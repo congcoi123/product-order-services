@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -49,13 +49,12 @@ public class AuthApplication {
 		SpringApplication.run(AuthApplication.class, args);
 	}
 
-	@Profile("dev")
+	@Profile("development")
 	@Bean
 	CommandLineRunner initDatabase(CredentialRepository credentialRepository) {
 		return args -> {
 			Credential cre = new Credential("cong", "12345");
 			credentialRepository.save(cre);
-
 		};
 	}
 

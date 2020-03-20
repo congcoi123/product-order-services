@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,6 @@ import org.springframework.beans.factory.annotation.Value;
 // To use this class outside. You have to 
 // 1. Define it as a bean, either by adding @Component or use @Bean to instantiate an object from it
 // 2. Use the @Autowire to ask spring to auto create it for you, and inject all the values.
-
 public class TokenConfig {
 
 	// Spring doesn't inject/autowire to "static" fields.

@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,9 @@ THE SOFTWARE.
 */
 package com.wishop.auth.controllers;
 
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -30,15 +33,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wishop.auth.controllers.api.Api;
-import com.wishop.auth.controllers.api.Version1;
-
-@RequestMapping(Api.CREDENTIALS)
+@RefreshScope
+@Configuration
+@ComponentScan
+@RequestMapping("${api.path.root}")
 @Validated
 @PreAuthorize("denyAll")
 public interface CredentialInterface {
 
-	@GetMapping({ Version1.BY_USERNAME })
+	@GetMapping({ "${api.path.credentials.getByUsername}" })
 	ResponseEntity<Object> getCredential(@PathVariable("username") String userName);
 
 }
