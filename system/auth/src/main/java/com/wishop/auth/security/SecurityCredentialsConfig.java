@@ -41,8 +41,8 @@ import com.wishop.auth.configurations.TokenConfig;
 import com.wishop.auth.services.CredentialService;
 import com.wishop.auth.services.TokenService;
 
-@EnableWebSecurity // Enable security configuration. This annotation denotes configuration for
-					// spring security.
+//Enable security configuration. This annotation denotes configuration for spring security.
+@EnableWebSecurity
 public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -69,13 +69,17 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 				.addFilter(new UsernameAndPasswordAuthenticationFilter(credentialService, authenticationManager(),
 						tokenConfig(), tokenService()))
 
-				// allow POST requests for the authentication
+				// Allow ping request (the order is important)
+				.authorizeRequests().antMatchers("/ping**").permitAll()
+
+				.and()
+				// Allow POST requests for the authentication
 				.authorizeRequests().antMatchers(HttpMethod.POST, tokenConfig().getUri()).permitAll()
 
-				// other requests need be authenticated
+				// Other requests need be authenticated
 				.anyRequest().authenticated()
 
-				// default response if the client wants to get a resource unauthorized
+				// Default response if the client wants to get a resource unauthorized
 				.and().exceptionHandling()
 				.authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 	}
