@@ -11,7 +11,7 @@ POST	| /auth-role/auth	| System endpoint to get JSON Web Key Set (JWKS) is a set
 ### Permission
 Manage permissions information
 
-Method	| Path	| Description	| User authenticated	| Role
+Method	| Path	| Description	| User authenticated	| Permission
 ------------- | ------------------------- | ------------- |:-------------:| :-------------:|
 GET	| /permissions/page/{page}/limit/{limit}	| Get all permissions by pages	|  × | PERM_READ_PERMISSION |
 GET	| /permissions/{id}		| Get permission by id	|  × | PERM_READ_PERMISSION |
@@ -21,7 +21,7 @@ DELETE	| /permissions/{id}	| Delete permission by id | ×  | PERM_DELETE_PERMISS
 ### Role
 Manage roles information
 
-Method	| Path	| Description	| User authenticated	| Role
+Method	| Path	| Description	| User authenticated	| Permission
 ------------- | ------------------------- | ------------- |:-------------:| :-------------:|
 GET	| /roles/page/{page}/limit/{limit}	| Get all roles by pages	|  × | PERM_READ_ROLE |
 GET	| /roles/{id}		| Get role by id	|  × | PERM_READ_ROLE |
@@ -32,7 +32,7 @@ POST| /roles/assign	| Assign permissions for role | ×  | PERM_WRITE_ROLE |
 ### Credential
 Manage credentials information
 
-Method	| Path	| Description	| User authenticated	| Role
+Method	| Path	| Description	| User authenticated	| Permission
 ------------- | ------------------------- | ------------- |:-------------:| :-------------:|
 GET	| /credentials/page/{page}/limit/{limit}	| Get all credentials by pages	|  × | PERM_READ_CREDENTIAL |
 GET	| /credentials/{username}		| Get credential by user name	|  × | PERM_READ_CREDENTIAL |
