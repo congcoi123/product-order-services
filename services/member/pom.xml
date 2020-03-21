@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wishop</groupId>
-	<artifactId>profile</artifactId>
+	<artifactId>member</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>profile</name>
+	<name>member</name>
 	<description>Profile service</description>
 
 	<properties>

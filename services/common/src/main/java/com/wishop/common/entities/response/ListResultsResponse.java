@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -43,14 +43,10 @@ public class ListResultsResponse extends BaseReponse {
 		return this;
 	}
 
-	/*
-	 * Response with list of results
-	 * 
-	 * @see ten.readany.auth.entities.response.BaseReponse#get()
-	 */
 	@Override
 	public ResponseEntity<Object> get() {
 		body.put(key, list);
 		return super.get();
 	}
+	
 }

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wishop</groupId>
-	<artifactId>product</artifactId>
+	<artifactId>template</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>product</name>
+	<name>template</name>
 	<description>Product service</description>
 
 	<properties>

@@ -11,9 +11,9 @@
 	</parent>
 	<groupId>com.wishop</groupId>
 	<artifactId>gate-way</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>gate-way</name>
-	<description>API gate-way</description>
+	<description>API GateWay Service</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,7 +22,6 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
-
 	</properties>
 
 	<dependencyManagement>
@@ -63,11 +62,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-client</artifactId>
 		</dependency>
-		<!-- Fix GsonBuilder class doesn't exist. -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
+
 	</dependencies>
 
 	<build>
