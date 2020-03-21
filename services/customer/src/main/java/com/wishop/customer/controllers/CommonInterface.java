@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,12 +21,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.controllers.api;
+package com.wishop.customer.controllers;
 
-public interface Api {
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-	String ROLES = "/roles";
-	String PERMISSIONS = "/permissions";
-	String CREDENTIALS = "/credentials";
+@RefreshScope
+@Configuration
+@ComponentScan
+@RequestMapping("${api.path.root}")
+public interface CommonInterface {
+
+	@GetMapping({ "${api.path.ping}" })
+	ResponseEntity<Object> ping();
 
 }

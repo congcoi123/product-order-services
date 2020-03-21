@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.configurations;
+package com.wishop.customer.configurations;
 
 import javax.sql.DataSource;
 
@@ -48,7 +48,7 @@ public class DatabaseConfig {
 	@Value("${jdbc.password}")
 	private String password;
 
-	@Profile("dev")
+	@Profile("development")
 	@Bean
 	public DataSource devDatabaseConnection() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -59,7 +59,7 @@ public class DatabaseConfig {
 		return dataSource;
 	}
 
-	@Profile("test")
+	@Profile("testing")
 	@Bean
 	public String testDatabaseConnection() {
 		System.out.println("DB Connection to RDS_TEST - Low Cost Instance");
@@ -68,7 +68,7 @@ public class DatabaseConfig {
 		return "DB Connection to RDS_TEST - Low Cost Instance";
 	}
 
-	@Profile("prod")
+	@Profile("production")
 	@Bean
 	public String prodDatabaseConnection() {
 		System.out.println("DB Connection to RDS_PROD - High Performance Instance");
@@ -76,4 +76,5 @@ public class DatabaseConfig {
 		System.out.println(url);
 		return "DB Connection to RDS_PROD - High Performance Instance";
 	}
+	
 }

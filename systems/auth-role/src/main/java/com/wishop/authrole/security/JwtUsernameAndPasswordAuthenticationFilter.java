@@ -41,9 +41,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.wishop.authrole.configurations.JwtConfig;
 import com.wishop.authrole.entities.Credential;
 import com.wishop.authrole.services.CredentialService;
+import com.wishop.common.configurations.JwtConfig;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

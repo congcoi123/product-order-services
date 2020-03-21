@@ -38,8 +38,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.wishop.authrole.configurations.JwtConfig;
 import com.wishop.authrole.services.CredentialService;
+import com.wishop.common.configurations.JwtConfig;
 
 //Enable security configuration. This annotation denotes configuration for spring security.
 @EnableWebSecurity

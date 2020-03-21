@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,38 +21,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.entities.request;
+package com.wishop.customer.controllers.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.wishop.customer.controllers.CommonInterface;
+import com.wishop.common.entities.response.BaseReponse;
+import com.wishop.common.entities.response.BaseReponse.ResponseState;
 
-@Entity
-public class AssignPermRequest {
+@RestController
+public class CommonController implements CommonInterface {
 
-	@Id
-	private Long id;
-
-	@NotNull(message = "Please provide a roleId")
-	private Long roleId;
-
-	@NotEmpty(message = "Please provide list of permissions' name (separated by commas)")
-	private String permissions;
-
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public List<String> getPermissions() {
-		List<String> perms = new ArrayList<String>();
-		for (String permission : permissions.split(",")) {
-			perms.add(permission);
-		}
-		return perms;
+	@HystrixCommand
+	@Override
+	public ResponseEntity<Object> ping() {
+		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();
 	}
 
 }
