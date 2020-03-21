@@ -1,26 +1,45 @@
 ## Overview
-This project contains prototype modules for making a simple product order system based on micro-service architecture. It based on [Spring](https://spring.io/) framework.
 
-## License
-This project is currently available under the [MIT](https://github.com/congcoi123/product-order-services/blob/master/LICENSE) License.
+Authorization Server for all other services which grants tokens for the backend resource services. All other secured services must set jwk uri for endpoint implemented on this service.
 
-## Installation
-You can get the sources:
-```
-git clone https://github.com/congcoi123/product-order-services.git
-```
+### Endpoints
+#### Authentication
+Method	| Path	| Description	| User authenticated	
+------------- | ------------------------- | ------------- |:-------------:|
+POST	| /auth-role/auth	| System endpoint to get JSON Web Key Set (JWKS) is a set of keys containing the public keys that should be used to verify JWT token	|  × |
 
-## Manual
-### Project Structure
-Coming soon !
+### Permission
+Manage permissions information
 
-### How to start
-Coming soon !
+Method	| Path	| Description	| User authenticated	| Role
+------------- | ------------------------- | ------------- |:-------------:| :-------------:|
+GET	| /permissions/page/{page}/limit/{limit}	| Get all permissions by pages	|  × | PERM_READ_PERMISSION |
+GET	| /permissions/{id}		| Get permission by id	|  × | PERM_READ_PERMISSION |
+POST| /permissions	| Create new permission | ×  | PERM_WRITE_PERMISSION |
+DELETE	| /permissions/{id}	| Delete permission by id | ×  | PERM_DELETE_PERMISSION |
 
-### Configurations
-Coming soon !
+### Role
+Manage roles information
 
-### How to deploy
-Coming soon !
+Method	| Path	| Description	| User authenticated	| Role
+------------- | ------------------------- | ------------- |:-------------:| :-------------:|
+GET	| /roles/page/{page}/limit/{limit}	| Get all roles by pages	|  × | PERM_READ_ROLE |
+GET	| /roles/{id}		| Get role by id	|  × | PERM_READ_ROLE |
+POST| /roles	| Create new role | ×  | PERM_WRITE_ROLE |
+DELETE	| /roles/{id}	| Delete role by id | ×  | PERM_DELETE_ROLE |
+POST| /roles/assign	| Assign permissions for role | ×  | PERM_WRITE_ROLE |
 
-> Happy coding !
+### Credential
+Manage credentials information
+
+Method	| Path	| Description	| User authenticated	| Role
+------------- | ------------------------- | ------------- |:-------------:| :-------------:|
+GET	| /credentials/page/{page}/limit/{limit}	| Get all credentials by pages	|  × | PERM_READ_CREDENTIAL |
+GET	| /credentials/{username}		| Get credential by user name	|  × | PERM_READ_CREDENTIAL |
+GET	| /credentials/roles/{username}		| Get all roles by user name	|  × | PERM_READ_CREDENTIAL |
+GET	| /credentials/permissions/{username}		| Get all permissions by user name	|  × | PERM_READ_CREDENTIAL |
+POST| /credentials	| Create new credential | ×  | PERM_WRITE_CREDENTIAL |
+DELETE	| /credentials/{username}	| Delete credential by username | ×  | PERM_DELETE_CREDENTIAL |
+POST| /credentials/assign	| Assign role for credential | ×  | PERM_WRITE_CREDENTIAL |
+
+You can check out the examples [here](https://github.com/congcoi123/product-order-services/blob/develop/systems/auth-role/ENDPOINTS.md)

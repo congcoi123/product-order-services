@@ -1,26 +1,3 @@
 ## Overview
-This project contains prototype modules for making a simple product order system based on micro-service architecture. It based on [Spring](https://spring.io/) framework.
 
-## License
-This project is currently available under the [MIT](https://github.com/congcoi123/product-order-services/blob/master/LICENSE) License.
-
-## Installation
-You can get the sources:
-```
-git clone https://github.com/congcoi123/product-order-services.git
-```
-
-## Manual
-### Project Structure
-Coming soon !
-
-### How to start
-Coming soon !
-
-### Configurations
-Coming soon !
-
-### How to deploy
-Coming soon !
-
-> Happy coding !
+API Gateway is a concept of having a single point of entry to access all of the services in the backend. So, when any device wants to access resources from the server, they make a call to the API-Gateway. API-Gateway then reaches out to rest of the services which actually take care of serving the user with what they need.

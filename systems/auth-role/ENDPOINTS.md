@@ -1,6 +1,3 @@
-
-# ENDPOINTS
-
 ## Authentication
 ### Login
 --- Request
