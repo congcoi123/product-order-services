@@ -42,4 +42,4 @@ POST| /credentials	| Create new credential | ×  | PERM_WRITE_CREDENTIAL |
 DELETE	| /credentials/{username}	| Delete credential by username | ×  | PERM_DELETE_CREDENTIAL |
 POST| /credentials/assign	| Assign role for credential | ×  | PERM_WRITE_CREDENTIAL |
 
-You can check out the examples [here](https://github.com/congcoi123/product-order-services/blob/develop/systems/auth-role/ENDPOINTS.md)
+You can check out the examples [here](https://github.com/congcoi123/product-order-services/blob/develop/systems/auth-role/ENDPOINTS.md) !
