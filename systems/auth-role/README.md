@@ -6,7 +6,7 @@ Authorization Server for all other services which grants tokens for the backend 
 #### Authentication
 Method	| Path	| Description	| User authenticated	
 ------------- | ------------------------- | ------------- |:-------------:|
-POST	| /auth-role/auth	| System endpoint to get JWT |  ✓ |
+POST	| /auth-role/auth	| System endpoint to get JWT |  × |
 
 ### Permission
 Manage permissions information
