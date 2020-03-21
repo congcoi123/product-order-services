@@ -25,6 +25,8 @@ package com.wishop.authrole.configurations;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import lombok.Getter;
+
 // To use this class outside. You have to 
 // 1. Define it as a bean, either by adding @Component or use @Bean to instantiate an object from it
 // 2. Use the @Autowire to ask spring to auto create it for you, and inject all the values.
@@ -39,39 +41,24 @@ public class JwtConfig {
 	// Spring doesn't inject/autowire to "static" fields.
 	// Link: https://stackoverflow.com/a/6897406
 	// Can be set as configuration parameters in application.properties
+	@Getter
 	@Value("${security.jwt.uri:/auth/**}")
 	private String Uri;
 
+	@Getter
 	@Value("${security.jwt.header:Authorization}")
 	private String header;
 
+	@Getter
 	@Value("${security.jwt.prefix:Bearer }")
 	private String prefix;
 
+	@Getter
 	@Value("${security.jwt.expiration:#{24*60*60}}")
 	private int expiration;
 
+	@Getter
 	@Value("${security.jwt.secret:JwtSecretKey}")
 	private String secret;
-
-	public String getUri() {
-		return Uri;
-	}
-
-	public String getHeader() {
-		return header;
-	}
-
-	public String getPrefix() {
-		return prefix;
-	}
-
-	public int getExpiration() {
-		return expiration;
-	}
-
-	public String getSecret() {
-		return secret;
-	}
 
 }

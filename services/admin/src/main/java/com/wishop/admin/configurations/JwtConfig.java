@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.configurations;
+package com.wishop.admin.configurations;
 
 import org.springframework.beans.factory.annotation.Value;
+
+import lombok.Getter;
 
 // To use this class outside. You have to 
 // 1. Define it as a bean, either by adding @Component or use @Bean to instantiate an object from it
@@ -39,39 +41,24 @@ public class JwtConfig {
 	// Spring doesn't inject/autowire to "static" fields.
 	// Link: https://stackoverflow.com/a/6897406
 	// Can be set as configuration parameters in application.properties
+	@Getter
 	@Value("${security.jwt.uri:/auth/**}")
 	private String Uri;
 
+	@Getter
 	@Value("${security.jwt.header:Authorization}")
 	private String header;
 
+	@Getter
 	@Value("${security.jwt.prefix:Bearer }")
 	private String prefix;
 
+	@Getter
 	@Value("${security.jwt.expiration:#{24*60*60}}")
 	private int expiration;
 
+	@Getter
 	@Value("${security.jwt.secret:JwtSecretKey}")
 	private String secret;
-
-	public String getUri() {
-		return Uri;
-	}
-
-	public String getHeader() {
-		return header;
-	}
-
-	public String getPrefix() {
-		return prefix;
-	}
-
-	public int getExpiration() {
-		return expiration;
-	}
-
-	public String getSecret() {
-		return secret;
-	}
 
 }

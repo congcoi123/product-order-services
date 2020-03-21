@@ -41,8 +41,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.wishop.authrole.configurations.JwtConfig;
 import com.wishop.authrole.services.CredentialService;
 
-@EnableWebSecurity // Enable security config. This annotation denotes config for spring security.
-@EnableGlobalMethodSecurity(prePostEnabled = true) // Check permission in every methods
+//Enable security configuration. This annotation denotes configuration for spring security.
+@EnableWebSecurity
+//Check permission in every methods
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
