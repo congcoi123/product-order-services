@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.security;
+package com.wishop.stock.security;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,18 +38,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.wishop.authrole.configurations.JwtConfig;
-import com.wishop.authrole.services.CredentialService;
+import com.wishop.common.configurations.JwtConfig;
 
-@EnableWebSecurity // Enable security config. This annotation denotes config for spring security.
+//Enable security configuration. This annotation denotes configuration for spring security.
+@EnableWebSecurity // Enable security configuration. This annotation denotes configuration for spring security.
+//Check permission in every methods
 @EnableGlobalMethodSecurity(prePostEnabled = true) // Check permission in every methods
 public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-
-	@Autowired
-	private CredentialService credentialService;
 
 	@Autowired
 	private JwtConfig jwtConfig;
@@ -60,19 +58,21 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 				// Don't need CSRF for this time
 				.csrf().disable()
 
-				// Make sure we use stateless session; Session won't be used to store user's
+				// Make sure we use state-less session; Session won't be used to store user's
 				// state.
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
 				.and()
 				// Add a filter to validate the tokens with every request
 				.addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig), UsernamePasswordAuthenticationFilter.class)
-				// Add a filter to validate user credentials and add token in the response
-				.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(credentialService, authenticationManager(),
-						jwtConfig))
 
+				.authorizeRequests()
+				// Allow ping request (the order is important)
+				.antMatchers("/ping**").permitAll()
+				// Allow actuator (monitoring, circuit breaker) request (the order is important), it should be authenticated.
+				.antMatchers("/actuator/**").permitAll()
 				// allow POST requests for the authentication
-				.authorizeRequests().antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
+				.antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
 
 				// default response if the client wants to get a resource unauthorized
 				.and().exceptionHandling()
