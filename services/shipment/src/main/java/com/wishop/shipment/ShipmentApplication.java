@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,30 +21,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.entities.request;
+package com.wishop.shipment;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@Entity
-public class AssignRoleRequest {
+@SpringBootApplication
+public class ShipmentApplication {
 
-	@Id
-	private Long id;
-
-	@NotNull(message = "Please provide a roleId")
-	private Long roleId;
-
-	@NotEmpty(message = "Please provide an user's name")
-	private String userName;
-
-	public Long getRoleId() {
-		return roleId;
+	public static void main(String[] args) {
+		SpringApplication.run(ShipmentApplication.class, args);
 	}
 
-	public String getUserName() {
-		return userName;
-	}
 }
