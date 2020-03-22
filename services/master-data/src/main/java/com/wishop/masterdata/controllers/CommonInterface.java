@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,38 +21,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.entities.request;
+package com.wishop.masterdata.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+@RefreshScope
+@Configuration
+@ComponentScan
+@RequestMapping("${api.path.root}")
+public interface CommonInterface {
 
-@Entity
-public class AssignPermRequest {
-
-	@Id
-	private Long id;
-
-	@NotNull(message = "Please provide a roleId")
-	private Long roleId;
-
-	@NotEmpty(message = "Please provide list of permissions' name (separated by commas)")
-	private String permissions;
-
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public List<String> getPermissions() {
-		List<String> perms = new ArrayList<String>();
-		for (String permission : permissions.split(",")) {
-			perms.add(permission);
-		}
-		return perms;
-	}
+	@GetMapping({ "${api.path.ping}" })
+	ResponseEntity<Object> ping();
 
 }
