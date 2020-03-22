@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2019 kong <congcoi123@gmail.com>
+Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,12 +21,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.authrole.controllers.api;
+package com.wishop.product.controllers.impl;
 
-public interface Api {
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
-	String ROLES = "/roles";
-	String PERMISSIONS = "/permissions";
-	String CREDENTIALS = "/credentials";
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.wishop.common.entities.response.BaseReponse;
+import com.wishop.common.entities.response.BaseReponse.ResponseState;
+import com.wishop.product.controllers.CommonInterface;
+
+@RestController
+public class CommonController implements CommonInterface {
+
+	@HystrixCommand
+	@Override
+	public ResponseEntity<Object> ping() {
+		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();
+	}
 
 }
