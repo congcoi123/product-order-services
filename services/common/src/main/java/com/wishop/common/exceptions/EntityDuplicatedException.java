@@ -1,3 +1,4 @@
+/*
 The MIT License
 
 Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
@@ -19,3 +20,18 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+package com.wishop.common.exceptions;
+
+public class EntityDuplicatedException extends RuntimeException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6014384929591564943L;
+
+	public EntityDuplicatedException(String entityName, String name) {
+		super("Can not create duplicated " + entityName + " with name: " + name);
+	}
+
+}

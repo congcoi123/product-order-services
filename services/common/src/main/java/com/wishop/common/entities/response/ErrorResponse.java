@@ -1,3 +1,4 @@
+/*
 The MIT License
 
 Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
@@ -19,3 +20,32 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+package com.wishop.common.entities.response;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+public class ErrorResponse extends BaseReponse {
+
+	private List<String> errors = new ArrayList<String>();
+
+	public ErrorResponse() {
+		super(HttpStatus.OK, ResponseState.FAILED);
+	}
+
+	public ErrorResponse addMessageError(String error) {
+		errors.add(error);
+		return this;
+	}
+
+	@Override
+	public ResponseEntity<Object> get() {
+		body.put("errors", errors);
+		return super.get();
+	}
+	
+}

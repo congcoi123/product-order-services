@@ -1,3 +1,4 @@
+/*
 The MIT License
 
 Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
@@ -19,3 +20,33 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+package com.wishop.common.entities.response;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+public class ListResultsResponse extends BaseReponse {
+
+	private String key;
+	private List<?> list;
+
+	public ListResultsResponse() {
+		super(HttpStatus.OK, ResponseState.SUCCESS);
+	}
+
+	public ListResultsResponse setListResults(String key, List<?> list) {
+		this.key = key;
+		this.list = list;
+		return this;
+	}
+
+	@Override
+	public ResponseEntity<Object> get() {
+		body.put(key, list);
+		return super.get();
+	}
+	
+}

@@ -1,3 +1,4 @@
+/*
 The MIT License
 
 Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
@@ -19,3 +20,22 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+package com.wishop.common.exceptions;
+
+public class EntityNotFoundException extends RuntimeException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7066458953695878482L;
+
+	public EntityNotFoundException(String entityName, Long id) {
+		super(entityName + " is not found with Id: " + id);
+	}
+
+	public EntityNotFoundException(String entityName, String name) {
+		super(entityName + " is not found with name: " + name);
+	}
+
+}

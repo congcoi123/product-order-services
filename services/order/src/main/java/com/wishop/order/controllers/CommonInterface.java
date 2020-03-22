@@ -1,3 +1,4 @@
+/*
 The MIT License
 
 Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
@@ -19,3 +20,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+package com.wishop.order.controllers;
+
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RefreshScope
+@Configuration
+@ComponentScan
+@RequestMapping("${api.path.root}")
+public interface CommonInterface {
+
+	@GetMapping({ "${api.path.ping}" })
+	ResponseEntity<Object> ping();
+
+}

@@ -1,3 +1,4 @@
+/*
 The MIT License
 
 Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
@@ -19,3 +20,39 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+package com.wishop.authrole.entities.request;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@Entity
+public class AssignPermRequest {
+
+	@Id
+	private Long id;
+
+	@NotNull(message = "Please provide a roleId")
+	private Long roleId;
+
+	@NotEmpty(message = "Please provide list of permissions' name (separated by commas)")
+	private String permissions;
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public List<String> getPermissions() {
+		List<String> perms = new ArrayList<String>();
+		for (String permission : permissions.split(",")) {
+			perms.add(permission);
+		}
+		return perms;
+	}
+
+}

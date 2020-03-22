@@ -1,3 +1,4 @@
+/*
 The MIT License
 
 Copyright (c) 2019-2020 kong <congcoi123@gmail.com>
@@ -19,3 +20,33 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+package com.wishop.common.entities.response;
+
+import org.springframework.http.ResponseEntity;
+
+public class PageResultsResponse extends ListResultsResponse {
+
+	private int page;
+	private int limit;
+	private int pageSize;
+	private long count;
+
+	public PageResultsResponse(int page, int limit, int pageSize, long count) {
+		super();
+		this.page = page;
+		this.limit = limit;
+		this.pageSize = pageSize;
+		this.count = count;
+	}
+
+	@Override
+	public ResponseEntity<Object> get() {
+		body.put("current_page", page);
+		body.put("page_size", pageSize);
+		body.put("pages", (int) Math.ceil((count * 1.0) / limit));
+		body.put("items", count);
+		return super.get();
+	}
+	
+}
