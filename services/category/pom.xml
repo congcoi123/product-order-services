@@ -13,7 +13,7 @@
 	<artifactId>category</artifactId>
 	<version>1.0.0</version>
 	<name>category</name>
-	<description>Category Service</description>
+	<description>The category management service</description>
 
 	<dependencies>
 

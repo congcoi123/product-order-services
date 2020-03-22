@@ -13,7 +13,7 @@
 	<artifactId>external-mall</artifactId>
 	<version>1.0.0</version>
 	<name>external-mall</name>
-	<description>External Mall Service</description>
+	<description>The external mall management service</description>
 
 	<dependencies>
 

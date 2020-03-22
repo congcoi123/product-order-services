@@ -13,7 +13,7 @@
 	<artifactId>admin</artifactId>
 	<version>1.0.0</version>
 	<name>admin</name>
-	<description>Administator Service</description>
+	<description>The administator service</description>
 
 	<dependencies>
 

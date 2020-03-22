@@ -13,7 +13,7 @@
 	<artifactId>logger</artifactId>
 	<version>1.0.0</version>
 	<name>logger</name>
-	<description>Logger Service</description>
+	<description>The logger management service</description>
 
 	<dependencies>
 

@@ -13,7 +13,7 @@
 	<artifactId>master-data</artifactId>
 	<version>1.0.0</version>
 	<name>master-data</name>
-	<description>Master Data Management Service</description>
+	<description>The master data management service</description>
 
 	<dependencies>
 

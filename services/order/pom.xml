@@ -13,7 +13,7 @@
 	<artifactId>order</artifactId>
 	<version>1.0.0</version>
 	<name>order</name>
-	<description>Order Management Service</description>
+	<description>The order management service</description>
 
 	<dependencies>
 

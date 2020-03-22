@@ -13,7 +13,7 @@
 	<artifactId>notification</artifactId>
 	<version>1.0.0</version>
 	<name>notification</name>
-	<description>Notification Service</description>
+	<description>The notification management service</description>
 
 	<dependencies>
 

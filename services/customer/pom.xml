@@ -13,7 +13,7 @@
 	<artifactId>customer</artifactId>
 	<version>1.0.0</version>
 	<name>customer</name>
-	<description>Customer Service</description>
+	<description>The customer management service</description>
 
 	<dependencies>
 
