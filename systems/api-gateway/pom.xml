@@ -13,7 +13,7 @@
 	<artifactId>gate-way</artifactId>
 	<version>1.0.0</version>
 	<name>gate-way</name>
-	<description>API GateWay Service</description>
+	<description>The API gateway service</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

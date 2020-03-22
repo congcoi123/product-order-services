@@ -13,7 +13,7 @@
 	<artifactId>eureka</artifactId>
 	<version>1.0.0</version>
 	<name>eureka</name>
-	<description>Services Register Management Service</description>
+	<description>The services register management service</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

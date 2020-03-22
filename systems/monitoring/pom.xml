@@ -13,7 +13,7 @@
 	<artifactId>monitoring</artifactId>
 	<version>1.0.0</version>
 	<name>monitoring</name>
-	<description>Monitoring Service</description>
+	<description>The services' monitoring service</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

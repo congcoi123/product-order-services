@@ -13,7 +13,7 @@
 	<artifactId>configuration</artifactId>
 	<version>1.0.0</version>
 	<name>configuration</name>
-	<description>Configuration Service</description>
+	<description>The configuration management service, all other services must ask for their configuration first by sending request to this one</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

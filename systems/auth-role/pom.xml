@@ -13,7 +13,7 @@
 	<artifactId>auth-role</artifactId>
 	<version>1.0.0</version>
 	<name>auth-role</name>
-	<description>Authenticated based on RBAC</description>
+	<description>The authenticated service based on RBAC</description>
 
 	<dependencies>
 
