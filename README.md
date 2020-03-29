@@ -36,6 +36,7 @@ Coming soon !
 Comming soon !
 
 #### Feature Services
+Comming soon !
 
 ### How to start
 Please run services as the following orders:
@@ -45,7 +46,7 @@ Please run services as the following orders:
 3) Start the api-gateway service
 5) Start the monitoring service
 6) Start the auth-role service
-7) Now you can start other future services
+7) Now you can start other feature services
 ```
 
 ### Configurations
