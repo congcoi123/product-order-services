@@ -34,7 +34,40 @@ Authorization Server for all other services which grants tokens for the backend 
 #### [Monitoring Service](https://github.com/congcoi123/product-order-services/tree/develop/systems/monitoring)
 Monitoring an application's health and metrics helps us manage it better, notice unoptimized behavior and get closer to its performance. This especially holds true when we're developing a system with many microservices, where monitoring each service can prove to be crucial when it comes to maintaining our system.
 
-### Feature Services
+### [Feature Services](https://github.com/congcoi123/product-order-services/tree/develop/services)
+Comming soon !
+
+#### [Administration](https://github.com/congcoi123/product-order-services/tree/develop/services/admin)
+Comming soon !
+
+#### [Customer](https://github.com/congcoi123/product-order-services/tree/develop/services/customer)
+Comming soon !
+
+#### [Logger](https://github.com/congcoi123/product-order-services/tree/develop/services/logger)
+Comming soon !
+
+#### [Master Data](https://github.com/congcoi123/product-order-services/tree/develop/services/master-data)
+Comming soon !
+
+#### [Notification](https://github.com/congcoi123/product-order-services/tree/develop/services/notification)
+Comming soon !
+
+#### [Order](https://github.com/congcoi123/product-order-services/tree/develop/services/order)
+Comming soon !
+
+#### [Payment](https://github.com/congcoi123/product-order-services/tree/develop/services/payment)
+Comming soon !
+
+#### [Product](https://github.com/congcoi123/product-order-services/tree/develop/services/product)
+Comming soon !
+
+#### [Shipment](https://github.com/congcoi123/product-order-services/tree/develop/services/shipment)
+Comming soon !
+
+#### [Stock](https://github.com/congcoi123/product-order-services/tree/develop/services/stock)
+Comming soon !
+
+#### [Template](https://github.com/congcoi123/product-order-services/tree/develop/services/template)
 Comming soon !
 
 ## How to start
