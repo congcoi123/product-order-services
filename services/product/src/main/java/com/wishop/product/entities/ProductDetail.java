@@ -21,24 +21,44 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.stock.controllers.impl;
+package com.wishop.product.entities;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.wishop.common.entities.response.BaseReponse;
-import com.wishop.common.entities.response.BaseReponse.ResponseState;
-import com.wishop.stock.controllers.CommonInterface;
+import org.springframework.data.annotation.Id;
 
-@RestController
-public class CommonController implements CommonInterface {
+import lombok.Getter;
+import lombok.Setter;
 
-	@HystrixCommand
-	@Override
-	public ResponseEntity<Object> ping() {
-		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();
-	}
+@Entity
+@Table(name = "product_detail")
+public class ProductDetail {
+
+	// must have setter and getter here for response
+	@Getter
+	@Setter
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+    private Long id;
+
+	@Getter
+	@Setter
+    @Column(name = "product_id")
+    private Long productId;
+
+	@Getter
+	@Setter
+    @Column(name = "m_pd_id")
+    private Long mPdId;
+
+	@Getter
+	@Setter
+    @Column(name = "content")
+    private String content;
 
 }

@@ -21,19 +21,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.stock;
+package com.wishop.inventory.controllers.impl;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class StockApplicationTests {
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.wishop.common.entities.response.BaseReponse;
+import com.wishop.common.entities.response.BaseReponse.ResponseState;
+import com.wishop.inventory.controllers.CommonInterface;
 
-	@Test
-	public void contextLoads() {
+@RestController
+public class CommonController implements CommonInterface {
+
+	@HystrixCommand
+	@Override
+	public ResponseEntity<Object> ping() {
+		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();
 	}
 
 }

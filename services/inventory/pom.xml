@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wishop</groupId>
-	<artifactId>stock</artifactId>
+	<artifactId>inventory</artifactId>
 	<version>1.0.0</version>
-	<name>stock</name>
-	<description>The stock management service</description>
+	<name>inventory</name>
+	<description>The inventory management service</description>
 
 	<dependencies>
 
@@ -31,7 +31,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.wishop.stock.StockApplication</mainClass>
+					<mainClass>com.wishop.inventory.InventoryApplication</mainClass>
 					<layout>ZIP</layout>
 				</configuration>
 				<executions>

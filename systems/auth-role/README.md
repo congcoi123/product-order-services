@@ -1,6 +1,6 @@
 ## Overview
 
-Authorization Server for all other services which grants tokens for the backend resource services. All other secured services must set jwk uri for endpoint implemented on this service.
+Authorization Server for all other services which grants tokens for the backend resource services. All other secured services must set jwk uri for endpoint implemented on this service. This authorization service based on [RBAC pattern](https://en.wikipedia.org/wiki/Role-based_access_control).
 
 ### Endpoints
 #### Authentication
