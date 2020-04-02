@@ -1,1 +1,1 @@
-## Stock
+## Inventory
