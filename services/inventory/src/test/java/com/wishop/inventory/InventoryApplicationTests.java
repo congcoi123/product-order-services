@@ -21,16 +21,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.stock;
+package com.wishop.inventory;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@SpringBootApplication
-public class StockApplication {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class InventoryApplicationTests {
 
-	public static void main(String[] args) {
-		SpringApplication.run(StockApplication.class, args);
+	@Test
+	public void contextLoads() {
 	}
 
 }

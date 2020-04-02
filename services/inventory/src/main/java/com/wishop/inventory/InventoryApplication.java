@@ -21,24 +21,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package com.wishop.stock.controllers.impl;
+package com.wishop.inventory;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.wishop.common.entities.response.BaseReponse;
-import com.wishop.common.entities.response.BaseReponse.ResponseState;
-import com.wishop.stock.controllers.CommonInterface;
+@SpringBootApplication
+public class InventoryApplication {
 
-@RestController
-public class CommonController implements CommonInterface {
-
-	@HystrixCommand
-	@Override
-	public ResponseEntity<Object> ping() {
-		return new BaseReponse(HttpStatus.OK, ResponseState.SUCCESS).get();
+	public static void main(String[] args) {
+		SpringApplication.run(InventoryApplication.class, args);
 	}
 
 }

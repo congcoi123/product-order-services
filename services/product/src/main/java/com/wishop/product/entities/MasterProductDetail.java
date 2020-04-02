@@ -54,8 +54,8 @@ public class MasterProductDetail {
 
 	@Getter
 	@Setter
-	@Column(name = "colum_name")
-	private String columName;
+	@Column(name = "fixed_name")
+	private String fixedName;
 
 	@Getter
 	@Setter
