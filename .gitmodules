@@ -1,0 +1,3 @@
+[submodule "configurations"]
+	path = configurations
+	url = /Users/kong/Documents/github/workspace/product-order-services-configuration
